@@ -28,8 +28,9 @@ class MessageWidget extends StatelessWidget {
               SizedBox(
                 width: 8.0,
               ),
-              Text('${message.date.year}/${message.date.month}/${message.date.day}' +
-                  ' ${message.date.hour}:${message.date.minute}'),
+              Text(
+                  '${message.date.year}/${message.date.month}/${message.date.day}' +
+                      ' ${message.date.hour}:${message.date.minute}'),
             ],
           ),
           SizedBox(
@@ -48,7 +49,13 @@ class MessageWidget extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      SizedBox(
+                        height: 8.0,
+                      ),
                       Text(message.message),
+                      SizedBox(
+                        height: 8.0,
+                      ),
                     ]),
               ),
             ),
