@@ -10,15 +10,35 @@ class ConfirmFireWidget extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          Material(
-            borderRadius: BorderRadius.circular(16),
-            clipBehavior: Clip.antiAlias ,
-            child: Container(
-              height: 200,
-              child: Column(
-                children: <Widget>[Image.file(_image,height: 150,width: 266,fit: BoxFit.fitWidth,)],
-              ),
-            ),
+          Column(
+            children: <Widget>[
+              Material(
+                  borderRadius: BorderRadius.circular(16),
+                  clipBehavior: Clip.antiAlias,
+                  child: Container(
+                      child: Image.file(
+                    _image,
+                    height: 150,
+                    width: 266,
+                    fit: BoxFit.fitWidth,
+                  ))),
+              Row(
+                children: <Widget>[
+                  FlatButton(
+                    child: Text('Safe zone'),
+                    onPressed: () {},
+                  ),
+                  FlatButton(
+                    child: Text('no'),
+                    onPressed: () {},
+                  ),
+                  FlatButton(
+                    child: Text('Yes'),
+                    onPressed: () {},
+                  )
+                ],
+              )
+            ],
           ),
         ],
       ),
