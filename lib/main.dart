@@ -1,16 +1,20 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:space_app_2019/pages/networkChat/chatPage.dart';
+import 'package:space_app_2019/pages/loginPage/loginpage.dart';
 import 'package:space_app_2019/states/NotifyState.dart';
 import 'package:space_app_2019/states/chatNotifier.dart';
+import 'package:space_app_2019/states/loginState.dart';
 
 void main() => runApp(
       ChangeNotifierProvider(
-        builder: (context) => ChatNotifier(),
+        builder: (context) => LoginState(),
         child: ChangeNotifierProvider(
-          builder: (context) => NotifyState()..getUUID(),
-          child: MyApp(),
+          builder: (context) => ChatNotifier(),
+          child: ChangeNotifierProvider(
+            builder: (context) => NotifyState()..getUUID(),
+            child: MyApp(),
+          ),
         ),
       ),
     );
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChatPage(),
+      home: LoginPage(),
     );
   }
 }
