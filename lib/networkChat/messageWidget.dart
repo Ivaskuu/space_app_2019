@@ -13,7 +13,9 @@ class MessageWidget extends StatelessWidget {
         children: <Widget>[
           Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: message.username == 'Simone Scino' ? MainAxisAlignment.end : MainAxisAlignment.start,
+            mainAxisAlignment: message.username == 'Simone Scino'
+                ? MainAxisAlignment.end
+                : MainAxisAlignment.start,
             children: <Widget>[
               Text(
                 message.username,

@@ -21,5 +21,7 @@ class ChatNotifier with ChangeNotifier {
     notifyListeners();
   }
 
+  void notify() => notifyListeners();
+
   List<Message> get messages => _messages;
 }

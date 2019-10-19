@@ -25,6 +25,7 @@ class ChatPage extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(left: 16.0, right: 4.0),
+            color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -32,6 +33,7 @@ class ChatPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width - 80.0,
                   child: TextField(
                     controller: _notifier.controller,
+                    onChanged: (_) => _notifier.notify(),
                     textCapitalization: TextCapitalization.sentences,
                     autofocus: true,
                     decoration: InputDecoration(
@@ -43,13 +45,15 @@ class ChatPage extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.send),
                   color: Color.fromRGBO(3, 59, 146, 1),
-                  onPressed: () => _notifier.addMessage(
-                    new Message(
-                      message: _notifier.controller.text,
-                      username: 'Simone Scino',
-                      location: 'Italy',
-                    ),
-                  ),
+                  onPressed: _notifier.controller.text != ''
+                      ? () => _notifier.addMessage(
+                            new Message(
+                              message: _notifier.controller.text,
+                              username: 'Simone Scino',
+                              location: 'Italy',
+                            ),
+                          )
+                      : null,
                 ),
               ],
             ),
