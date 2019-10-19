@@ -225,8 +225,9 @@ class _ReportFireState extends State<ReportFire> {
                                                 top: 16,
                                                 left: 16,
                                                 right: 16),
+                                            title: Text('Report sent'),
                                             content: Text(
-                                              'Report sent.\nDial emergency number?',textAlign: TextAlign.justify,
+                                              'Dial emergency number?',
                                               style: TextStyle(
                                                   color: Colors.black),
                                             ),
@@ -253,8 +254,7 @@ class _ReportFireState extends State<ReportFire> {
                                                 onPressed: () async {
                                                   if (await canLaunch(
                                                       'tel:112')) {
-                                                    await launch(
-                                                        'tel:112');
+                                                    await launch('tel:112');
                                                   } else {
                                                     throw 'Could not launch';
                                                   }
