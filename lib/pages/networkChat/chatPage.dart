@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:space_app_2019/Models/message.dart';
 import 'package:space_app_2019/pages/networkChat/messageWidget.dart';
+import 'package:space_app_2019/pages/networkChat/reportWidget.dart';
 import 'package:space_app_2019/states/chatNotifier.dart';
 
 ChatNotifier _notifier;
@@ -15,10 +16,13 @@ class ChatPage extends StatelessWidget {
         alignment: AlignmentDirectional.bottomStart,
         children: <Widget>[
           ListView.builder(
-            padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 34.0, top: 32.0),
+            padding: EdgeInsets.only(
+                left: 20.0, right: 20.0, bottom: 34.0, top: 32.0),
             itemCount: _notifier.messages.length,
             itemBuilder: (context, index) =>
-                MessageWidget(_notifier.messages[index]),
+                _notifier.messages[index].runtimeType == Message().runtimeType
+                    ? MessageWidget(_notifier.messages[index])
+                    : ReportWidget(_notifier.messages[index], index),
           ),
           Container(
             padding: EdgeInsets.only(left: 16.0, right: 4.0),
