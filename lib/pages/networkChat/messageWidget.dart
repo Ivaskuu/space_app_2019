@@ -10,6 +10,9 @@ class MessageWidget extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.symmetric(vertical: 12.0),
       child: Column(
+        crossAxisAlignment: message.username == 'Simone Scino'
+            ? CrossAxisAlignment.end
+            : CrossAxisAlignment.start,
         children: <Widget>[
           Row(
             mainAxisSize: MainAxisSize.max,
@@ -18,7 +21,7 @@ class MessageWidget extends StatelessWidget {
                 : MainAxisAlignment.start,
             children: <Widget>[
               Text(
-                message.username,
+                message.username == 'Simone Scino' ? 'Me' : message.username,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -36,28 +39,24 @@ class MessageWidget extends StatelessWidget {
           SizedBox(
             height: 8.0,
           ),
-          SizedBox(
-            width: double.infinity,
-            child: Material(
-              elevation: 10.0,
-              shadowColor: Colors.black54,
-              borderRadius: BorderRadius.circular(12.0),
-              clipBehavior: Clip.antiAlias,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 16.0, top: 8.0, bottom: 8.0, right: 8.0),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                      Text(message.message),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                    ]),
-              ),
+          Material(
+            elevation: 10.0,
+            shadowColor: Colors.black54,
+            borderRadius: BorderRadius.circular(12.0),
+            clipBehavior: Clip.antiAlias,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                    Text(message.message),
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                  ]),
             ),
           ),
         ],
