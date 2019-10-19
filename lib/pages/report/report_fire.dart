@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:space_app_2019/widgets/confirmationWidget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ReportFire extends StatefulWidget {
@@ -35,7 +36,7 @@ class _ReportFireState extends State<ReportFire> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _fireImage == null
+      /*body: _fireImage == null
           ? Center(
               child: CircularProgressIndicator(),
             )
@@ -303,7 +304,8 @@ class _ReportFireState extends State<ReportFire> {
                   ),
                 )
               ],
-            ),
+            ),*/
+      body: ConfirmFireWidget(_fireImage),
     );
   }
 }
