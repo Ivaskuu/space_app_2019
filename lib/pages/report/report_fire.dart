@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ReportFire extends StatefulWidget {
   @override
@@ -213,7 +214,57 @@ class _ReportFireState extends State<ReportFire> {
                               color: Color.fromRGBO(3, 59, 146, 1),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12)),
-                              onPressed: _fireStatus != 0 ? () {} : null,
+                              onPressed: _fireStatus != 0
+                                  ? () {
+                                      showDialog(
+                                          barrierDismissible: false,
+                                          context: context,
+                                          child: AlertDialog(
+                                            contentPadding: EdgeInsets.only(
+                                                bottom: 0,
+                                                top: 16,
+                                                left: 16,
+                                                right: 16),
+                                            content: Text(
+                                              'Report sent.\nDial emergency number?',textAlign: TextAlign.justify,
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                            actions: <Widget>[
+                                              FlatButton(
+                                                child: Text(
+                                                  'no',
+                                                  style: TextStyle(
+                                                      color: Colors.grey),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                              FlatButton(
+                                                child: Text(
+                                                  'Yes',
+                                                  style: TextStyle(
+                                                      color:
+                                                          _coloreActiveButton,
+                                                      fontWeight:
+                                                          FontWeight.w800),
+                                                ),
+                                                onPressed: () async {
+                                                  if (await canLaunch(
+                                                      'tel:112')) {
+                                                    await launch(
+                                                        'tel:112');
+                                                  } else {
+                                                    throw 'Could not launch';
+                                                  }
+                                                  Navigator.pop(context);
+                                                },
+                                              )
+                                            ],
+                                          ));
+                                    }
+                                  : null,
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 24),
@@ -245,7 +296,9 @@ class _ReportFireState extends State<ReportFire> {
                       elevation: 0,
                       foregroundColor: Colors.black,
                       child: Icon(Icons.close),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   ),
                 )
