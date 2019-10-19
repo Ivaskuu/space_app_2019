@@ -25,6 +25,11 @@ class MessageWidget extends StatelessWidget {
                 width: 8.0,
               ),
               Text('in ${message.location}'),
+              SizedBox(
+                width: 8.0,
+              ),
+              Text('${message.date.year}/${message.date.month}/${message.date.day}' +
+                  ' ${message.date.hour}:${message.date.minute}'),
             ],
           ),
           SizedBox(

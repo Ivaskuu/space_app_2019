@@ -18,6 +18,19 @@ class ChatPage extends StatelessWidget {
         ),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
+        automaticallyImplyLeading: false,
+        actions: <Widget>[
+          Tooltip(
+            message: 'Close the page',
+            child: IconButton(
+              icon: Icon(
+                Icons.close,
+                color: Colors.black,
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+          )
+        ],
       ),
       body: Stack(
         alignment: AlignmentDirectional.bottomStart,
@@ -56,6 +69,7 @@ class ChatPage extends StatelessWidget {
                               message: _notifier.controller.text,
                               username: 'Simone Scino',
                               location: 'Italy',
+                              date: DateTime.now(),
                             ),
                           )
                       : null,
