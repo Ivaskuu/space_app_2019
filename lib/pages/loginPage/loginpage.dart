@@ -81,7 +81,7 @@ class LoginPage extends StatelessWidget {
                     FlatButton(
                       child: Text('LOGIN'),
                       textColor: Color.fromRGBO(252, 59, 28, 1), //rosso nasa,
-                      onPressed: () {},
+                      onPressed: () => _notifier.login(context),
                     ),
                     SizedBox(
                       height: 8.0,

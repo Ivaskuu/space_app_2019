@@ -5,9 +5,11 @@ import 'package:space_app_2019/pages/loginPage/loginpage.dart';
 import 'package:space_app_2019/states/NotifyState.dart';
 import 'package:space_app_2019/states/chatNotifier.dart';
 import 'package:space_app_2019/states/loginState.dart';
+import 'package:space_app_2019/states/navigationState.dart';
 
-void main() => runApp(
-      ChangeNotifierProvider(
+void main() => runApp(ChangeNotifierProvider(
+      builder: (context) => NavigationState(),
+      child: ChangeNotifierProvider(
         builder: (context) => LoginState(),
         child: ChangeNotifierProvider(
           builder: (context) => ChatNotifier(),
@@ -17,7 +19,7 @@ void main() => runApp(
           ),
         ),
       ),
-    );
+    ));
 
 class MyApp extends StatelessWidget {
   final FirebaseMessaging _fcm = FirebaseMessaging();

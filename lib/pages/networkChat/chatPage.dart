@@ -11,32 +11,11 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (_notifier == null) _notifier = Provider.of<ChatNotifier>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Emergency chat',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        automaticallyImplyLeading: false,
-        actions: <Widget>[
-          Tooltip(
-            message: 'Close the page',
-            child: IconButton(
-              icon: Icon(
-                Icons.close,
-                color: Colors.black,
-              ),
-              onPressed: () => Navigator.pop(context),
-            ),
-          )
-        ],
-      ),
       body: Stack(
         alignment: AlignmentDirectional.bottomStart,
         children: <Widget>[
           ListView.builder(
-            padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 34.0),
+            padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 34.0, top: 32.0),
             itemCount: _notifier.messages.length,
             itemBuilder: (context, index) =>
                 MessageWidget(_notifier.messages[index]),
@@ -53,7 +32,6 @@ class ChatPage extends StatelessWidget {
                     controller: _notifier.controller,
                     onChanged: (_) => _notifier.notify(),
                     textCapitalization: TextCapitalization.sentences,
-                    autofocus: true,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Type a message',
