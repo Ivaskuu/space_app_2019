@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:space_app_2019/Models/message.dart';
-import 'package:space_app_2019/networkChat/messageWidget.dart';
+import 'package:space_app_2019/pages/networkChat/messageWidget.dart';
 import 'package:space_app_2019/states/chatNotifier.dart';
 
 ChatNotifier _notifier;
@@ -12,7 +12,12 @@ class ChatPage extends StatelessWidget {
     if (_notifier == null) _notifier = Provider.of<ChatNotifier>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Emergency chat'),
+        title: Text(
+          'Emergency chat',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
       ),
       body: Stack(
         alignment: AlignmentDirectional.bottomStart,
