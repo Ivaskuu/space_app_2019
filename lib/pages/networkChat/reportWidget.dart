@@ -46,11 +46,17 @@ class _ReportWidgetState extends State<ReportWidget>
                           height: 8,
                         ),
                         Center(
-                          child: Image.network(
-                            widget.report.image,
-                            height: 256.0,
-                            width: 256.0,
-                            fit: BoxFit.cover,
+                          child: Stack(
+                            alignment: AlignmentDirectional.center,
+                            children: <Widget>[
+                              CircularProgressIndicator(),
+                              Image.network(
+                                widget.report.image,
+                                height: 256.0,
+                                width: 256.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(
