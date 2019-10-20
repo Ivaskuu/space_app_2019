@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:space_app_2019/pages/map/map_page.dart';
 import 'package:provider/provider.dart';
 import 'package:space_app_2019/pages/home/pageWidget.dart';
 import 'package:space_app_2019/pages/networkChat/chatPage.dart';
 import 'package:space_app_2019/states/navigationState.dart';
 
 List<Widget> _pages = [
-  Center(
-    child: Text('Home\nSk2u non fa il merge'),
-  ),
+  MapPage(),
   ChatPage(),
   Center(
     child: Text('Risk Zones'),
