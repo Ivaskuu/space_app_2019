@@ -53,7 +53,6 @@ class _ReportWidgetState extends State<ReportWidget>
                               Image.network(
                                 widget.report.image,
                                 height: 256.0,
-                                width: 256.0,
                                 fit: BoxFit.cover,
                               ),
                             ],

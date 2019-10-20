@@ -25,7 +25,7 @@ class ChatPage extends StatelessWidget {
                     : ReportWidget(_notifier.messages[index], index),
           ),
           Container(
-            padding: EdgeInsets.only(left: 16.0, right: 4.0),
+            padding: EdgeInsets.only(left: 16.0, right: 4.0, bottom: 68.0),
             color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
