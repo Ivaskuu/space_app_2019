@@ -4,14 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:space_app_2019/pages/home/pageWidget.dart';
 import 'package:space_app_2019/pages/networkChat/chatPage.dart';
 import 'package:space_app_2019/pages/report/report_fire.dart';
+import 'package:space_app_2019/pages/risk_zone/risk_zone_page.dart';
 import 'package:space_app_2019/states/navigationState.dart';
 
 List<Widget> _pages = [
   MapPage(),
   ChatPage(),
-  Center(
-    child: Text('Risk Zones'),
-  )
+  RiskZonePage(),
 ];
 
 class HomePage extends StatefulWidget {
@@ -62,17 +61,17 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     PageWidget(
                       name: 'Home',
-                      icon: Icons.home,
+                      icon: Icons.map,
                       index: 0,
                     ),
                     PageWidget(
                       name: 'Emergency',
-                      icon: Icons.date_range,
+                      icon: Icons.chat,
                       index: 1,
                     ),
                     PageWidget(
                       name: 'Risk Zones',
-                      icon: Icons.room_service,
+                      icon: Icons.warning,
                       index: 2,
                     ),
                   ],
