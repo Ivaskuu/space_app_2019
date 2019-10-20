@@ -36,6 +36,7 @@ flutter:
 
   assets:
    - lib/Images/appLogo.png
+   - res/RenderData.jpg
 
   fonts:
     - family: Icons
