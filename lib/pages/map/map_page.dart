@@ -1,3 +1,4 @@
+import 'dart:core';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
@@ -5,14 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:latlong/latlong.dart' as ltln;
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:space_app_2019/managers/api_manager.dart';
+import 'package:space_app_2019/pages/map/last_fires.dart';
 import 'package:tuple/tuple.dart';
+
+bool _clicked = false;
 
 class MapPage extends StatefulWidget {
   @override
   _MapPageState createState() => _MapPageState();
 }
 
-class _MapPageState extends State<MapPage> {
+class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
   static const MIN_ZOOM = 7.0;
   static const MAX_ZOOM = 15.0;
 
@@ -29,7 +33,7 @@ class _MapPageState extends State<MapPage> {
 
   List<ltln.LatLng> fires = [];
   List<ltln.LatLng> lastVisibleFires = [];
-  List<Symbol> _symbols = [];
+  List<Symbol> _symbols = <Symbol>[];
   bool _isComputingMarkers = false;
 
   // static List<>
@@ -176,47 +180,61 @@ class _MapPageState extends State<MapPage> {
           alignment: Alignment.topCenter,
           child: Padding(
             padding: const EdgeInsets.all(16.0).copyWith(top: 24.0 + 16.0),
-            child: Material(
-              elevation: 6.0,
-              shadowColor: Colors.black45,
-              color: Colors.white,
-              clipBehavior: Clip.antiAlias,
-              borderRadius: BorderRadius.circular(12.0),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  children: <Widget>[
-                    Icon(fireIcon,
-                        color: (lastVisibleFires?.length ?? 0) > 0
-                            ? Color.fromRGBO(252, 59, 28, 1)
-                            : Colors.black26),
-                    SizedBox(width: 8.0),
-                    Expanded(
-                      child: RichText(
-                        text: TextSpan(
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            fontFamily: 'GoogleSans',
-                            color: Colors.black,
-                            fontWeight: lastVisibleFires.length == 0
-                                ? FontWeight.w400
-                                : FontWeight.bold,
+            child: AnimatedSize(
+              duration: Duration(milliseconds: 350),
+              vsync: this,
+              child: _clicked
+                  ? LastFires(lastVisibleFires)
+                  : InkWell(
+                      onTap: () {
+                        setState(() {
+                          _clicked = true;
+                        });
+                      },
+                      child: Material(
+                        elevation: 6.0,
+                        shadowColor: Colors.black45,
+                        color: Colors.white,
+                        clipBehavior: Clip.antiAlias,
+                        borderRadius: BorderRadius.circular(12.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Row(
+                            children: <Widget>[
+                              Icon(fireIcon,
+                                  color: (lastVisibleFires?.length ?? 0) > 0
+                                      ? Color.fromRGBO(252, 59, 28, 1)
+                                      : Colors.black26),
+                              SizedBox(width: 8.0),
+                              Expanded(
+                                child: RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                      fontSize: 16.0,
+                                      fontFamily: 'GoogleSans',
+                                      color: Colors.black,
+                                      fontWeight: lastVisibleFires.length == 0
+                                          ? FontWeight.w400
+                                          : FontWeight.bold,
+                                    ),
+                                    text:
+                                        '${lastVisibleFires.length == 0 ? 'No' : lastVisibleFires.length} ',
+                                    children: [
+                                      TextSpan(
+                                        text: 'fires found in this area',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Icon(Icons.keyboard_arrow_down),
+                            ],
                           ),
-                          text:
-                              '${lastVisibleFires.length == 0 ? 'No' : lastVisibleFires.length} ',
-                          children: [
-                            TextSpan(
-                              text: 'fires found in this area',
-                              style: TextStyle(fontWeight: FontWeight.w400),
-                            ),
-                          ],
                         ),
                       ),
                     ),
-                    Icon(Icons.keyboard_arrow_down),
-                  ],
-                ),
-              ),
             ),
           ),
         ),
