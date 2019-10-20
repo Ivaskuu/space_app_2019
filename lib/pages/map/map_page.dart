@@ -16,6 +16,8 @@ class _MapPageState extends State<MapPage> {
   static const MIN_ZOOM = 7.0;
   static const MAX_ZOOM = 15.0;
 
+  final fireIcon = const IconData(0xe900, fontFamily: 'Icons');
+
   MapboxMapController mapController;
   CameraPosition _position = const CameraPosition(
     target: LatLng(45.5076664, 9.1540164),
@@ -156,16 +158,68 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MapboxMap(
-      onMapCreated: _onMapInit,
-      styleString: MapboxStyles
-          .SATELLITE_STREETS, //r'mapbox://styles/ivaskuu/ck1xg2mhg0qz81co908w1fxd6',
-      initialCameraPosition: _position,
-      tiltGesturesEnabled: false,
-      rotateGesturesEnabled: false,
-      minMaxZoomPreference: MinMaxZoomPreference(MIN_ZOOM, MAX_ZOOM),
-      myLocationEnabled: false,
-      trackCameraPosition: true,
+    return Stack(
+      children: <Widget>[
+        MapboxMap(
+          onMapCreated: _onMapInit,
+          styleString: MapboxStyles
+              .SATELLITE_STREETS, //r'mapbox://styles/ivaskuu/ck1xg2mhg0qz81co908w1fxd6',
+          initialCameraPosition: _position,
+          tiltGesturesEnabled: false,
+          rotateGesturesEnabled: false,
+          minMaxZoomPreference: MinMaxZoomPreference(MIN_ZOOM, MAX_ZOOM),
+          myLocationEnabled: false,
+          trackCameraPosition: true,
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0).copyWith(top: 24.0 + 16.0),
+            child: Material(
+              elevation: 6.0,
+              shadowColor: Colors.black45,
+              color: Colors.white,
+              clipBehavior: Clip.antiAlias,
+              borderRadius: BorderRadius.circular(12.0),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  children: <Widget>[
+                    Icon(fireIcon,
+                        color: (lastVisibleFires?.length ?? 0) > 0
+                            ? Color.fromRGBO(252, 59, 28, 1)
+                            : Colors.black26),
+                    SizedBox(width: 8.0),
+                    Expanded(
+                      child: RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontFamily: 'GoogleSans',
+                            color: Colors.black,
+                            fontWeight: lastVisibleFires.length == 0
+                                ? FontWeight.w400
+                                : FontWeight.bold,
+                          ),
+                          text:
+                              '${lastVisibleFires.length == 0 ? 'No' : lastVisibleFires.length} ',
+                          children: [
+                            TextSpan(
+                              text: 'fires found in this area',
+                              style: TextStyle(fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Icon(Icons.keyboard_arrow_down),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
