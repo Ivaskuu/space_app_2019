@@ -27,6 +27,7 @@ class _MapPageState extends State<MapPage> {
 
   List<ltln.LatLng> fires = [];
   List<ltln.LatLng> lastVisibleFires = [];
+  List<Symbol> _symbols = [];
   bool _isComputingMarkers = false;
 
   // static List<>
@@ -116,7 +117,7 @@ class _MapPageState extends State<MapPage> {
       final resultCopy = List<ltln.LatLng>.from(result);
 
       print(result.length);
-      lastVisibleFires.removeWhere((point) => result.contains(point));
+      result.removeWhere((point) => lastVisibleFires.contains(point));
 
       final markersToAdd = result
         ..removeWhere((point) => lastVisibleFires.contains(point));
@@ -125,19 +126,28 @@ class _MapPageState extends State<MapPage> {
       print(markersToAdd);
       print(markersToDelete);
 
-      // result.forEach(
+      markersToAdd.forEach(
+        (point) {
+          // print('i want to add symbol');
+          mapController.addSymbol(
+            SymbolOptions(
+              textField: '•',
+              textColor: '#FF0000',
+              geometry: LatLng(point.latitude, point.longitude),
+            ),
+          )..then((s) => _symbols.add(s));
+        },
+      );
+
+      // markersToDelete.forEach(
       //   (point) {
       //     // print('i want to add symbol');
-      //     mapController.addSymbol(
-      //       SymbolOptions(
-      //         textField: '•',
-      //         textColor: '#FF0000',
-      //         geometry: LatLng(point.latitude, point.longitude),
-      //       ),
-      //     );
+      //     mapController.removeSymbol(_symbols.firstWhere((s) =>
+      //         s.options.geometry == LatLng(point.latitude, point.longitude)));
       //   },
       // );
 
+      print(resultCopy.length);
       lastVisibleFires = resultCopy;
 
       setState(() => _isComputingMarkers = false);
