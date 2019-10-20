@@ -16,6 +16,9 @@ dependencies:
   geolocator: ^5.1.4+2
   image_picker: ^0.6.1+8
   url_launcher: ^5.2.3
+  firebase_messaging: ^5.1.6
+  cloud_firestore: ^0.12.9+5
+  shared_preferences: ^0.5.3+5
 
 dev_dependencies:
   flutter_test:
@@ -25,8 +28,8 @@ flutter:
 
   uses-material-design: true
 
-  # assets:
-  #  - images/a_dot_burr.jpeg
+  assets:
+   - lib/Images/appLogo.png
 
   fonts:
     - family: Icons
