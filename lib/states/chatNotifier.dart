@@ -16,7 +16,7 @@ class ChatNotifier with ChangeNotifier {
       username: 'Pizio Leonardo',
       grade: 2,
       image:
-          'https://www.gannett-cdn.com/media/2018/06/01/Camarillo/Camarillo/636634098877962218-vclo-0819-sbfire.jpg?width=1080&quality=50',
+          'https://si.wsj.net/public/resources/images/BN-VN209_3fJmK_OR_20171010153027.jpg?width=620&height=388',
     ),
     Message(
       username: 'Adrian Ivascu',
