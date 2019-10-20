@@ -133,6 +133,7 @@ class _MapPageState extends State<MapPage> {
           // print('i want to add symbol');
           mapController.addSymbol(
             SymbolOptions(
+              textSize: 80,
               textField: '•',
               textColor: '#FF0000',
               geometry: LatLng(point.latitude, point.longitude),

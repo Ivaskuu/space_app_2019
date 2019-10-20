@@ -11,9 +11,13 @@ import 'package:space_app_2019/pages/home/home_page.dart';
 import 'package:space_app_2019/pages/report/report_fire.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitUp],
   );
+
+  // SystemChrome.setEnabledSystemUIOverlays([]);
 
   runApp(ChangeNotifierProvider(
     builder: (context) => NavigationState(),
