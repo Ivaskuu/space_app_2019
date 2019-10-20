@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
       title: 'SpaceApp 2019',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'GoogleSans',
       ),
       home: LoginPage(),
     );
